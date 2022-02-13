@@ -1,11 +1,11 @@
-package com.latebox.server;
+package com.latebox.server.simpleObject;
 
-public class Greeting {
+public class SimpleObject {
 
     private final long id;
     private final String content;
 
-    public Greeting(long id, String content) {
+    public SimpleObject(long id, String content) {
         this.id = id;
         this.content = content;
     }
