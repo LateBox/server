@@ -49,7 +49,11 @@ public class ProductController {
 
     @DeleteMapping("/products/{id}")
     void deleteProduct(@PathVariable Long id) {
-        repository.deleteById(id);
+        if (repository.existsById(id)){
+            repository.deleteById(id);
+        }else{
+            throw new ProductNotFoundException(id);
+        }
     }
 }
 
