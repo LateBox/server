@@ -31,19 +31,19 @@ public class ProductController {
     }
 
     @PutMapping("/products/{id}")
-    Product replaceEmployee(@RequestBody Product newEmployee, @PathVariable Long id) {
+    Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
 
         return repository.findById(id)
-                .map(employee -> {
-                    employee.setName(newEmployee.getName());
-                    employee.setDescription(newEmployee.getDescription());
-                    employee.setPrice(newEmployee.getPrice());
-                    employee.setRestaurantId(newEmployee.getRestaurantId());
-                    return repository.save(employee);
+                .map(product -> {
+                    product.setName(newProduct.getName());
+                    product.setDescription(newProduct.getDescription());
+                    product.setPrice(newProduct.getPrice());
+                    product.setRestaurantId(newProduct.getRestaurantId());
+                    return repository.save(product);
                 })
                 .orElseGet(() -> {
-                    newEmployee.setId(id);
-                    return repository.save(newEmployee);
+                    newProduct.setId(id);
+                    return repository.save(newProduct);
                 });
     }
 
