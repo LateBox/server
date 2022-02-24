@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 
-    List<Review> findByName(String name);
+//    List<Review> findByName(String name);
 
     Review findById(long id);
 }
