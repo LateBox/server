@@ -38,6 +38,7 @@ public class ReportController {
                     report.setUserId(newReport.getUserId());
                     report.setRestaurantId(newReport.getRestaurantId());
                     report.setReportContent(newReport.getReportContent());
+                    report.setDate(newReport.getDate());
                     return repository.save(report);
                 })
                 .orElseGet(() -> {

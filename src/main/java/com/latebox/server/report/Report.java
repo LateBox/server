@@ -13,14 +13,15 @@ public class Report {
     private int userId;
     private int restaurantId;
     private String reportContent;
-
+    private String date;
 
     Report() {}
 
-    public Report(int userId, int restaurantId, String reportContent) {
+    public Report(int userId, int restaurantId, String reportContent, String date) {
         this.userId = userId;
         this.restaurantId = restaurantId;
         this.reportContent = reportContent;
+        this.date = date;
     }
 
     public Long getId() {
@@ -55,6 +56,14 @@ public class Report {
         this.reportContent = reportContent;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 
     @Override
     public String toString() {
@@ -63,6 +72,7 @@ public class Report {
                 ", userId='" + userId + '\'' +
                 ", restaurantId='" + restaurantId + '\'' +
                 ", report=" + reportContent +
+                ", date=" + date +
                 '}';
     }
 
