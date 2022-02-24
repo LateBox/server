@@ -17,8 +17,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
+    container: gradle:jdk11
+    
     steps:
+    - run: |
+          apt-get update
+          apt-get install --yes --no-install-recommends postgres postgresql-client postgres-contrib
+    - run: |
+          psql -h postgres -U postgres -c 'CREATE lateboxDB ...'
+          psql -h postgres -U postgres -c 'CREATE postgres ...'
     - uses: actions/checkout@v2
     - name: Set up JDK 17
       uses: actions/setup-java@v2
