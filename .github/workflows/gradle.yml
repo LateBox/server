@@ -23,7 +23,7 @@ jobs:
     steps:
     - run: |
           apt-get update
-          apt-get install --yes --no-install-recommends postgres postgresql-client postgres-contrib
+          apt-get install --yes --no-install-recommends postgresql-client
     - run: |
           psql -h postgres -U postgres -c 'CREATE lateboxDB ...'
           psql -h postgres -U postgres -c 'CREATE postgres ...'
