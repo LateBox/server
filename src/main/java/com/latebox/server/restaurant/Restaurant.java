@@ -13,14 +13,18 @@ public class Restaurant {
     private String name;
     private String description;
     private String address;
+    private String city;
+    private String country;
 
 
     Restaurant() {}
 
-    public Restaurant(String name, String description, String address) {
+    public Restaurant(String name, String description, String address, String city, String country) {
         this.name = name;
         this.description = description;
         this.address = address;
+        this.city = city;
+        this.country = country;
     }
 
     public Long getId() {
@@ -55,6 +59,22 @@ public class Restaurant {
         this.address = address;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
 
     @Override
     public String toString() {
@@ -63,6 +83,8 @@ public class Restaurant {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", address=" + address +
+                ", city=" + city +
+                ", country=" + country +
                 '}';
     }
 

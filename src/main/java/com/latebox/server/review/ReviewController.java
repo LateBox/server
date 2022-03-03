@@ -40,6 +40,7 @@ public class ReviewController {
                     review.setOrderId(newReview.getOrderId());
                     review.setStarRating(newReview.getStarRating());
                     review.setComments(newReview.getComments());
+                    review.setDate(newReview.getDate());
                     return repository.save(review);
                 })
                 .orElseGet(() -> {

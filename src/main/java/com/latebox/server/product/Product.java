@@ -14,15 +14,17 @@ public class Product {
     private String description;
     private float price;
     private int restaurantId;
+    private int stock;
 
 
     Product() {}
 
-    public Product(String name, String description, float price, int restaurantId) {
+    public Product(String name, String description, float price, int restaurantId, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantId = restaurantId;
+        this.stock = stock;
     }
 
     public Long getId() {
@@ -65,6 +67,14 @@ public class Product {
         this.restaurantId = restaurantId;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
 
     @Override
     public String toString() {
@@ -74,6 +84,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", restaurantId=" + restaurantId +
+                ", stock=" + stock +
                 '}';
     }
 

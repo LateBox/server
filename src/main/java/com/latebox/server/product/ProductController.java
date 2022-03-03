@@ -39,6 +39,7 @@ public class ProductController {
                     product.setDescription(newProduct.getDescription());
                     product.setPrice(newProduct.getPrice());
                     product.setRestaurantId(newProduct.getRestaurantId());
+                    product.setStock(newProduct.getStock());
                     return repository.save(product);
                 })
                 .orElseGet(() -> {

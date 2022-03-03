@@ -15,16 +15,18 @@ public class Review {
     private int orderId;
     private int starRating;
     private String comments;
+    private String date;
 
 
     Review() {}
 
-    public Review(int userId, int restaurantId, int orderId, int starRating, String comments) {
+    public Review(int userId, int restaurantId, int orderId, int starRating, String comments, String date) {
         this.userId = userId;
         this.restaurantId = restaurantId;
         this.orderId = orderId;
         this.starRating = starRating;
         this.comments = comments;
+        this.date = date;
     }
 
     public Long getId() {
@@ -75,6 +77,14 @@ public class Review {
         this.comments = comments;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 
     @Override
     public String toString() {
@@ -85,6 +95,7 @@ public class Review {
                 ", orderId='" + orderId + '\'' +
                 ", stars='" + starRating + '\'' +
                 ", comments=" + comments +
+                ", date=" + date +
                 '}';
     }
 

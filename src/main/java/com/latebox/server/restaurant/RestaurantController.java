@@ -38,6 +38,8 @@ public class RestaurantController {
                     restaurant.setName(newRestaurant.getName());
                     restaurant.setDescription(newRestaurant.getDescription());
                     restaurant.setAddress(newRestaurant.getAddress());
+                    restaurant.setCity(newRestaurant.getCity());
+                    restaurant.setCountry(newRestaurant.getCountry());
                     return repository.save(restaurant);
                 })
                 .orElseGet(() -> {
