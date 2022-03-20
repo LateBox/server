@@ -17,7 +17,8 @@ public class Review {
     private String comments;
 
 
-    Review() {}
+    Review() {
+    }
 
     public Review(int userId, int restaurantId, int orderId, int starRating, String comments) {
         this.userId = userId;

@@ -15,7 +15,8 @@ public class Report {
     private String reportContent;
 
 
-    Report() {}
+    Report() {
+    }
 
     public Report(int userId, int restaurantId, String reportContent) {
         this.userId = userId;

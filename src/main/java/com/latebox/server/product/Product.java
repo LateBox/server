@@ -16,7 +16,8 @@ public class Product {
     private int restaurantId;
 
 
-    Product() {}
+    Product() {
+    }
 
     public Product(String name, String description, float price, int restaurantId) {
         this.name = name;

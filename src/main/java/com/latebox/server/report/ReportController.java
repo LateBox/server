@@ -14,12 +14,12 @@ public class ReportController {
     }
 
     @GetMapping("/reports")
-    List<Report> all(){
+    List<Report> all() {
         return repository.findAll();
     }
 
     @PostMapping("/reports")
-    Report newReport(@RequestBody Report newReport){
+    Report newReport(@RequestBody Report newReport) {
         return repository.save(newReport);
     }
 
@@ -48,9 +48,9 @@ public class ReportController {
 
     @DeleteMapping("/reports/{id}")
     void deleteReport(@PathVariable Long id) {
-        if (repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
-        }else{
+        } else {
             throw new ReportNotFoundException(id);
         }
     }

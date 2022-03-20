@@ -14,12 +14,12 @@ public class ReviewController {
     }
 
     @GetMapping("/reviews")
-    List<Review> all(){
+    List<Review> all() {
         return repository.findAll();
     }
 
     @PostMapping("/reviews")
-    Review newReview(@RequestBody Review newReview){
+    Review newReview(@RequestBody Review newReview) {
         return repository.save(newReview);
     }
 
@@ -50,9 +50,9 @@ public class ReviewController {
 
     @DeleteMapping("/reviews/{id}")
     void deleteReview(@PathVariable Long id) {
-        if (repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
-        }else{
+        } else {
             throw new ReviewNotFoundException(id);
         }
     }

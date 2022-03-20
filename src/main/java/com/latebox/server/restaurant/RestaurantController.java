@@ -14,12 +14,12 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants")
-    List<Restaurant> all(){
+    List<Restaurant> all() {
         return repository.findAll();
     }
 
     @PostMapping("/restaurants")
-    Restaurant newRestaurant(@RequestBody Restaurant newRestaurant){
+    Restaurant newRestaurant(@RequestBody Restaurant newRestaurant) {
         return repository.save(newRestaurant);
     }
 
@@ -48,9 +48,9 @@ public class RestaurantController {
 
     @DeleteMapping("/restaurants/{id}")
     void deleteRestaurant(@PathVariable Long id) {
-        if (repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
-        }else{
+        } else {
             throw new RestaurantNotFoundException(id);
         }
     }
