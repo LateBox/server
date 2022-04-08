@@ -14,12 +14,12 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    List<Product> all(){
+    List<Product> all() {
         return repository.findAll();
     }
 
     @PostMapping("/products")
-    Product newProduct(@RequestBody Product newProduct){
+    Product newProduct(@RequestBody Product newProduct) {
         return repository.save(newProduct);
     }
 
@@ -50,9 +50,9 @@ public class ProductController {
 
     @DeleteMapping("/products/{id}")
     void deleteProduct(@PathVariable Long id) {
-        if (repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
-        }else{
+        } else {
             throw new ProductNotFoundException(id);
         }
     }

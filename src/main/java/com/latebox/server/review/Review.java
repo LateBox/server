@@ -18,7 +18,8 @@ public class Review {
     private String date;
 
 
-    Review() {}
+    Review() {
+    }
 
     public Review(int userId, int restaurantId, int orderId, int starRating, String comments, String date) {
         this.userId = userId;

@@ -17,7 +17,8 @@ public class Product {
     private int stock;
 
 
-    Product() {}
+    Product() {
+    }
 
     public Product(String name, String description, float price, int restaurantId, int stock) {
         this.name = name;

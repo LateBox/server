@@ -17,7 +17,8 @@ public class Restaurant {
     private String country;
 
 
-    Restaurant() {}
+    Restaurant() {
+    }
 
     public Restaurant(String name, String description, String address, String city, String country) {
         this.name = name;
