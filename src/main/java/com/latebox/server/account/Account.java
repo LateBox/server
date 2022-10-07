@@ -15,14 +15,18 @@ public class Account {
     Long id;
     private String email;
     private String password;
+
+
+    private String phone;
     @NotNull
     private String userType;
 
     public Account(){
     }
-    public Account(String email,String password, String userType){
+    public Account(String email,String password,String phone, String userType){
         this.email = email;
         this.password = password;
+        this.phone = phone;
         this.userType = userType;
     }
 
@@ -45,6 +49,15 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 
     public String getUserType() {
         return userType;

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:19006")
 @RestController
 public class AccountController {
 
@@ -13,12 +14,13 @@ public class AccountController {
     public AccountController(AccountRepository repository) {
         this.repository = repository;
     }
+    @CrossOrigin(origins = "http://localhost:19006")
+    @GetMapping("/accounts")
+    List<Account> all(){
+        return repository.findAll();
+    }
 
-//    @GetMapping("/accounts")
-//    List<Account> all(){
-//        return repository.findAll();
-//    }
-
+    @CrossOrigin(origins = "http://localhost:19006")
     @GetMapping("/accounts/{email}")
     List<Account> allEmail(@PathVariable String email){
         List<Account> results = repository.findByEmail(email);
