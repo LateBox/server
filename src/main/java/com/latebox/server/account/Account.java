@@ -13,6 +13,7 @@ public class Account {
     private @Id
     @GeneratedValue
     Long id;
+    private String fullName;
     private String email;
     private String password;
 
@@ -23,7 +24,8 @@ public class Account {
 
     public Account(){
     }
-    public Account(String email,String password,String phone, String userType){
+    public Account(String fullName, String email, String password, String phone, String userType){
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -33,6 +35,10 @@ public class Account {
     public Long getId() {
         return id;
     }
+
+    public String getFullName() {return fullName; }
+
+    public void setFullName(String fullName) {this.fullName = fullName; }
 
     public String getEmail() {
         return email;
