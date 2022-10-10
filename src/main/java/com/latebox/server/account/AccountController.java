@@ -3,6 +3,11 @@ package com.latebox.server.account;
 import com.latebox.server.account.Account;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:19006")
@@ -30,6 +35,24 @@ public class AccountController {
 
     @PostMapping("/accounts")
     Account newProduct(@RequestBody Account newAccount){
-        return repository.save(newAccount);
+
+        Account hashedAccount = newAccount;
+
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        String uncookedPass = newAccount.getPassword();
+
+        digest.update(uncookedPass.getBytes(StandardCharsets.UTF_8));
+        byte[] digested = digest.digest();
+
+        String coockedPass = String.format("%064x", new BigInteger(1, digested));
+        hashedAccount.setPassword(coockedPass);
+
+        return repository.save(hashedAccount);
     }
 }
