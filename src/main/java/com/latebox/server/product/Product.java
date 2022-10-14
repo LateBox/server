@@ -12,15 +12,15 @@ public class Product {
     Long id;
     private String name;
     private String description;
-    private float price;
-    private int restaurantId;
-    private int stock;
+    private String price;
+    private String restaurantId;
+    private String stock;
 
 
     Product() {
     }
 
-    public Product(String name, String description, float price, int restaurantId, int stock) {
+    public Product(String name, String description, String price, String restaurantId, String stock) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -52,27 +52,27 @@ public class Product {
         this.description = description;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getRestaurantId() {
+    public String getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(int restaurantId) {
+    public void setRestaurantId(String restaurantId) {
         this.restaurantId = restaurantId;
     }
 
-    public int getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock = stock;
     }
 
