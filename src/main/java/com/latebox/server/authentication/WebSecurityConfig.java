@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.cors();
         httpSecurity.csrf().disable()
                 // permit /authenticate endpoint even if not authenticated
-                .authorizeRequests().antMatchers("/authenticate", "/accounts","/products","/products/19").permitAll().
+                .authorizeRequests().antMatchers("/authenticate", "/accounts","/products","/products/*").permitAll().
                 // permit all other endpoints once authenticated
                         anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
