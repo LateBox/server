@@ -14,16 +14,19 @@ public class ProductController {
         this.repository = repository;
     }
 
+    @CrossOrigin(origins = "http://localhost:19006")
     @GetMapping("/products")
     List<Product> all() {
         return repository.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:19006")
     @PostMapping("/products")
     Product newProduct(@RequestBody Product newProduct) {
         return repository.save(newProduct);
     }
 
+    @CrossOrigin(origins = "http://localhost:19006")
     @GetMapping("/products/{id}")
     Product one(@PathVariable Long id) {
 
@@ -31,6 +34,7 @@ public class ProductController {
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
+    @CrossOrigin(origins = "http://localhost:19006")
     @PutMapping("/products/{id}")
     Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
 
