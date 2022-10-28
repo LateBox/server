@@ -6,8 +6,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @CrossOrigin(origins = "http://localhost:19006")
 @RestController
@@ -22,10 +26,18 @@ public class JwtAuthenticationController {
     @CrossOrigin(origins = "http://localhost:19006")
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtUserObject authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+        String username = userDetails.getUsername();
+        String pass = userDetails.getPassword();
+        if (username.equals(authenticationRequest.getUsername()) && pass.equals(authenticationRequest.getPassword())) {
+            boolean flag = true;
+            final String token = jwtTokenUtil.generateToken(userDetails);
+            return ResponseEntity.ok(new JwtResponse(token));
+        } else {
+            boolean flag = false;
+            throw new UsernameNotFoundException("Incorrect credentials");
+        }
     }
 
     private void authenticate(String username, String password) throws Exception {
