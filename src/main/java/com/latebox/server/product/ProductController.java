@@ -1,5 +1,6 @@
 package com.latebox.server.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    @Autowired
     private final ProductRepository repository;
 
     public ProductController(ProductRepository repository) {
