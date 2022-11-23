@@ -1,5 +1,8 @@
 package com.latebox.server.product;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,17 +18,20 @@ public class Product {
     private String price;
     private String restaurantId;
     private String stock;
+    @Type(type="text")
+    private String imageUri;
 
 
     Product() {
     }
 
-    public Product(String name, String description, String price, String restaurantId, String stock) {
+    public Product(String name, String description, String price, String restaurantId, String stock, String imageUri) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantId = restaurantId;
         this.stock = stock;
+        this.imageUri= imageUri;
     }
 
     public Long getId() {
@@ -75,6 +81,11 @@ public class Product {
     public void setStock(String stock) {
         this.stock = stock;
     }
+
+    public String getImageUri() { return imageUri; }
+
+    public void setImageUri(String imageUri) { this.imageUri = imageUri; }
+
 
 
     @Override

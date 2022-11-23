@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:19006")
+@CrossOrigin
 @RestController
 public class ProductController {
 
@@ -14,27 +14,34 @@ public class ProductController {
         this.repository = repository;
     }
 
-    @CrossOrigin(origins = "http://localhost:19006")
+    @CrossOrigin
     @GetMapping("/products")
     List<Product> all() {
         return repository.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:19006")
+    @CrossOrigin
     @PostMapping("/products")
     Product newProduct(@RequestBody Product newProduct) {
         return repository.save(newProduct);
     }
 
-    @CrossOrigin(origins = "http://localhost:19006")
+    @CrossOrigin
     @GetMapping("/products/{id}")
     Product one(@PathVariable Long id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
+    @CrossOrigin
+    @GetMapping("/product/restaurant/{id}")
+    Product oneByResto(@PathVariable Long id) {
 
-    @CrossOrigin(origins = "http://localhost:19006")
+        return repository.findByRestaurantId(id.toString()).stream().findFirst()
+                .orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+    @CrossOrigin
     @PutMapping("/products/{id}")
     Product replaceProduct(@RequestBody Product newProduct, @PathVariable Long id) {
 
@@ -45,6 +52,7 @@ public class ProductController {
                     product.setPrice(newProduct.getPrice());
                     product.setRestaurantId(newProduct.getRestaurantId());
                     product.setStock(newProduct.getStock());
+                    product.setImageUri(newProduct.getImageUri());
                     return repository.save(product);
                 })
                 .orElseGet(() -> {
