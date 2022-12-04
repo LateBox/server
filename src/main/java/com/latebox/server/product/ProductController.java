@@ -27,6 +27,13 @@ public class ProductController {
     }
 
     @CrossOrigin
+    @GetMapping("/products/name/{name}")
+    List<Product> one(@PathVariable String name) {
+
+        return repository.findByNameContainingIgnoreCase(name);
+    }
+
+    @CrossOrigin
     @GetMapping("/products/{id}")
     Product one(@PathVariable Long id) {
 
@@ -53,6 +60,7 @@ public class ProductController {
                     product.setRestaurantId(newProduct.getRestaurantId());
                     product.setStock(newProduct.getStock());
                     product.setImageUri(newProduct.getImageUri());
+                    product.setRating(newProduct.getRating());
                     return repository.save(product);
                 })
                 .orElseGet(() -> {

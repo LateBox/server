@@ -17,7 +17,36 @@ public class Product {
     private String description;
     private String price;
     private String restaurantId;
+    private String restaurantName;
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public String getRestaurantAddress() {
+        return restaurantAddress;
+    }
+
+    public void setRestaurantAddress(String restaurantAddress) {
+        this.restaurantAddress = restaurantAddress;
+    }
+
+    private String restaurantAddress;
     private String stock;
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    private String rating;
     @Type(type="text")
     private String imageUri;
 
@@ -25,13 +54,16 @@ public class Product {
     Product() {
     }
 
-    public Product(String name, String description, String price, String restaurantId, String stock, String imageUri) {
+    public Product(String name, String description, String price, String restaurantId, String restaurantName, String restaurantAddress, String stock, String imageUri, String rating) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantId = restaurantId;
+        this.restaurantName = restaurantName;
+        this.restaurantAddress = restaurantAddress;
         this.stock = stock;
         this.imageUri= imageUri;
+        this.rating= rating;
     }
 
     public Long getId() {
