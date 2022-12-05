@@ -1,13 +1,11 @@
 package com.latebox.server.account;
 
-import com.latebox.server.account.Account;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:19006")
@@ -26,15 +24,15 @@ public class AccountController {
     }
 
     @CrossOrigin(origins = "http://localhost:19006")
-    @GetMapping("/accounts/{email}")
-    List<Account> allEmail(@PathVariable String email){
-        List<Account> results = repository.findByEmail(email);
-        // We need to return back the users list without passwords.
-        return results;
+    @GetMapping("/account/role/{email}")
+    String allEmail(@PathVariable String email){
+        String result = repository.findByEmail(email).get(0).getUserType();
+
+        return result;
     }
 
     @PostMapping("/accounts")
-    Account newProduct(@RequestBody Account newAccount){
+    Account newAccount(@RequestBody Account newAccount){
 
         Account hashedAccount = newAccount;
 

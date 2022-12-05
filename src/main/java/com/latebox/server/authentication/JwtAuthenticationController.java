@@ -11,11 +11,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 
 @CrossOrigin(origins = "http://localhost:19006")
 @RestController
 public class JwtAuthenticationController {
+
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -30,7 +45,11 @@ public class JwtAuthenticationController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         String username = userDetails.getUsername();
         String pass = userDetails.getPassword();
-        if (username.equals(authenticationRequest.getUsername()) && pass.equals(authenticationRequest.getPassword())) {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hashbytes = digest.digest(
+                authenticationRequest.getPassword().getBytes(StandardCharsets.UTF_8));
+        String sha3Hex = bytesToHex(hashbytes);
+        if (username.equals(authenticationRequest.getUsername()) && pass.equals(sha3Hex)) {
             boolean flag = true;
             final String token = jwtTokenUtil.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(token));
